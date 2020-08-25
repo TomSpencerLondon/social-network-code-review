@@ -11,15 +11,15 @@ import it.voxsim.exception.UserNotExistsException;
 
 public class InMemoryLinkRepository implements LinkRepository {
 
-	private Map<String, Set<String>> linksByUsername = new HashMap<String, Set<String>>();
+	private Map<String, Set<String>> linksByUsername = new HashMap<>();
 
 	private static Set<String> apply(String k) {
-		return new HashSet<String>();
+		return new HashSet<>();
 	}
 
 	public List<String> retrieveLinksByUsername(String username) {
 		Set<String> links = linksByUsername.get(username);
-		ArrayList<String> result = new ArrayList<String>();
+		ArrayList<String> result = new ArrayList<>();
 
 		if (links != null)
 			result.addAll(links);

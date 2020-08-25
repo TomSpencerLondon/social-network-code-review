@@ -13,6 +13,10 @@ public class InMemoryLinkRepository implements LinkRepository {
 
 	private Map<String, Set<String>> linksByUsername = new HashMap<String, Set<String>>();
 
+	private static Set<String> apply(String k) {
+		return new HashSet<String>();
+	}
+
 	public List<String> retrieveLinksByUsername(String username) {
 		Set<String> links = linksByUsername.get(username);
 		ArrayList<String> result = new ArrayList<String>();
@@ -24,8 +28,7 @@ public class InMemoryLinkRepository implements LinkRepository {
 	}
 
 	public void saveIfNotExist(String username) {
-		if (linksByUsername.get(username) == null)
-			linksByUsername.put(username, new HashSet<String>());
+		linksByUsername.computeIfAbsent(username, InMemoryLinkRepository::apply);
 	}
 
 	public void addLinkBetween(String username, String argument) {

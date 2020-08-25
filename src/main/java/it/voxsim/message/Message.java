@@ -4,16 +4,20 @@ import java.util.Calendar;
 
 public class Message implements Comparable<Message> {
 
-	private String description;
-	private Calendar time;
-	private String user;
-	private DeltaTimeTranslator deltaTimeTranslator;
+	private final String description;
+	private final Calendar time;
+	private final String user;
+	private final DeltaTimeTranslator deltaTimeTranslator;
 
 	private Message(String user, String description, Calendar time, DeltaTimeTranslator deltaTimeTranslator) {
 		this.user = user;
 		this.description = description;
 		this.time = time;
 		this.deltaTimeTranslator = deltaTimeTranslator;
+	}
+
+	public long timeInMillis(){
+		return this.time.getTimeInMillis();
 	}
 
 	public String description(String format, Calendar timeOfExecution) {
@@ -26,7 +30,7 @@ public class Message implements Comparable<Message> {
 	}
 
 	public int compareTo(Message anotherMessage) {
-		return (int) (anotherMessage.time.getTimeInMillis() - time.getTimeInMillis());
+		return (int) (anotherMessage.timeInMillis() - time.getTimeInMillis());
 	}
 
 	public static Message create(String user, String description, Calendar time) {

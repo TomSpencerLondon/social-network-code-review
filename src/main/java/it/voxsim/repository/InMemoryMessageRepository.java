@@ -10,10 +10,10 @@ import it.voxsim.message.Message;
 
 public class InMemoryMessageRepository implements MessageRepository {
 
-	private HashMap<String, TreeSet<Message>> messagesByUsername = new HashMap<String, TreeSet<Message>>();
+	private HashMap<String, TreeSet<Message>> messagesByUsername = new HashMap<>();
 
 	public List<Message> retrieveMessagesByUsernameOrderedByTime(String username) {
-		ArrayList<Message> messages = new ArrayList<Message>();
+		ArrayList<Message> messages = new ArrayList<>();
 		TreeSet<Message> messagesSet = messagesByUsername.get(username);
 		if (messagesSet != null)
 			messages.addAll(messagesSet);
@@ -21,8 +21,7 @@ public class InMemoryMessageRepository implements MessageRepository {
 	}
 
 	public void saveIfNotExist(String username) {
-		if (messagesByUsername.get(username) == null)
-			messagesByUsername.put(username, new TreeSet<Message>());
+		messagesByUsername.computeIfAbsent(username, k -> new TreeSet<Message>());
 	}
 
 	public void addMessageTo(String username, String message, Calendar timeOfExecution) {

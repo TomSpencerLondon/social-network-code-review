@@ -3,8 +3,6 @@ package it.voxsim.message;
 import java.util.Calendar;
 import java.util.List;
 
-import it.voxsim.message.Message;
-
 public class MultiMessagePrinter {
 	private String emptyMessage;
 	private String formatMessage;

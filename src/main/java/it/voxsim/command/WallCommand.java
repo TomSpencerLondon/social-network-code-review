@@ -36,7 +36,7 @@ public class WallCommand implements Command {
 	}
 
 	private List<Message> retrieveMessagesFromLinks(List<String> links) {
-		List<Message> messages = new ArrayList<Message>();
+		List<Message> messages = new ArrayList<>();
 		for (String user : links) {
 			List<Message> messagesOfUser = messageRepository.retrieveMessagesByUsernameOrderedByTime(user);
 			messages.addAll(messagesOfUser);
